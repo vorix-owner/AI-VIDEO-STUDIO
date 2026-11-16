@@ -4,7 +4,7 @@ from mathutils import Vector
 random.seed(8)
 bpy.ops.object.select_all(action='SELECT'); bpy.ops.object.delete(use_global=False)
 sc=bpy.context.scene
-sc.render.engine='BLENDER_EEVEE_NEXT'
+sc.render.engine='BLENDER_EEVEE'
 sc.render.resolution_x=1280; sc.render.resolution_y=720; sc.render.resolution_percentage=100
 sc.render.fps=24; sc.frame_start=1; sc.frame_end=120
 sc.render.image_settings.file_format='FFMPEG' if False else 'PNG'
@@ -52,6 +52,6 @@ bpy.ops.object.camera_add(location=(0,-13,5.4));cam=bpy.context.object
 direction=Vector((0,0,1.35))-cam.location;cam.rotation_euler=direction.to_track_quat('-Z','Y').to_euler()
 cam.data.type='ORTHO';cam.data.ortho_scale=10.5;sc.camera=cam
 bpy.ops.object.light_add(type='AREA',location=(-4,-6,10));bpy.context.object.data.energy=1800;bpy.context.object.data.shape='DISK';bpy.context.object.data.size=8
-sc.view_settings.view_transform='AgX'
+sc.view_settings.view_transform='Standard'
 sc.render.filepath='output/milo_bella_framing_test.png'
 bpy.ops.render.render(write_still=True)
