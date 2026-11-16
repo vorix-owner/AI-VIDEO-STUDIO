@@ -4,8 +4,10 @@ from mathutils import Vector
 random.seed(8)
 bpy.ops.object.select_all(action='SELECT'); bpy.ops.object.delete(use_global=False)
 sc=bpy.context.scene
-sc.render.engine='BLENDER_EEVEE'
-sc.render.resolution_x=1280; sc.render.resolution_y=720; sc.render.resolution_percentage=100
+sc.render.engine='CYCLES'
+sc.cycles.device='CPU'
+sc.cycles.samples=12
+sc.render.resolution_x=960; sc.render.resolution_y=540; sc.render.resolution_percentage=100
 sc.render.fps=24; sc.frame_start=1; sc.frame_end=120
 sc.render.image_settings.file_format='FFMPEG' if False else 'PNG'
 sc.render.filepath='/tmp/milo_frame.png'
