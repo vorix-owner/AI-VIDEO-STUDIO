@@ -15,7 +15,9 @@ jobs:
           sudo apt-get install -y blender
           mkdir -p output
       - name: Render camera composition test
-        run: blender -b -t 2 --python milo_bella_framing_test.py
+        run: |
+          blender -b -t 2 --python milo_bella_framing_test.py
+          test -s output/milo_bella_framing_test.png || { echo 'ERROR: Render output missing'; exit 1; }
       - name: Upload test frame
         uses: actions/upload-artifact@v4
         with:
